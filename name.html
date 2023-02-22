@@ -9,15 +9,16 @@
         return new Promise(function (resolve, reject) {
             waitForElementToDisplay(200);
             function waitForElementToDisplay(time) {
-                const firstName = 
+                const name = 
                 { 
-                     if_statement: document.querySelector('sqm-portal-registration-form')?.querySelector('sqm-name-fields')?.querySelector('div')?.querySelector('sl-input'),
-                    do_this: document.querySelector('sqm-portal-registration-form')?.querySelector('sqm-name-fields')?.querySelector('div')?.querySelector('sl-input')
+                    first: document.querySelector('sqm-portal-registration-form')?.querySelector('sqm-name-fields')?.querySelector('div')?.querySelectorAll('sl-input')[0],
+                    last: document.querySelector('sqm-portal-registration-form')?.querySelector('sqm-name-fields')?.querySelector('div')?.querySelectorAll('sl-input')[1]
     
                 }
 
-                if (firstName.if_statement) {
-                    resolve(firstName.do_this)
+
+                if (name.first) {
+                    resolve([name.first, name.last])
                 }
                 else {
                     setTimeout(function () {
@@ -30,8 +31,13 @@
     
     waitForInputField().then(inputField => {
         const queryParams = new URLSearchParams(window.location.search);
-        const firstName = queryParams.get("firstName");
-        console.log(inputField)
-        inputField.value = firstName
+        const lastName = queryParams.get("lastName");
+        const firstName = queryParams.get('firstName')
+        
+
+        const firstNameField = inputField[0]
+        const lastNameField = inputField[1]
+        firstNameField.value = firstName
+        lastNameField.value = lastName
     })
     </script>
