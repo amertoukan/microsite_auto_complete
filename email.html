@@ -1,3 +1,6 @@
+<!--
+    This will listen to an email param and place its findings into the email field on the registration page.
+-->
 <script>
 function waitForInputField() {
     return new Promise(function (resolve, reject) {
@@ -7,6 +10,7 @@ function waitForInputField() {
             { 
                  if_statement: document.querySelector('sqm-portal-registration-form')?.shadowRoot.querySelector('sl-form')?.querySelector('sl-input'),
                 do_this: (document.querySelector('sqm-portal-registration-form')?.shadowRoot.querySelector('sl-form')?.querySelector('sl-input'))
+
             }
 console.log("here. ", query1.if_statement)
             if (query1.if_statement) {

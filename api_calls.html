@@ -1,0 +1,30 @@
+<!--
+    This script is intended to be placed in the header of the microsite. 
+    It will perform a fetch call (url variable) and places the data into a stat container 
+    Returned data should be a number.  
+-->
+<script>
+function waitForInputField() {
+    return new Promise(function (resolve, reject) {
+        waitForElementToDisplay(200);
+        function waitForElementToDisplay(time) {
+        const query = document.querySelector('sqm-portal-container')?.querySelector('sqm-stat-container')?.querySelector('sqm-big-stat')?.shadowRoot.querySelector('div')
+        console.log(query)
+
+
+           const url = 'https://cat-fact.herokuapp.com/facts'
+            fetch(url).then(res => res)
+                .then(data => console.log(data))
+                .catch(err => console.error(err))
+        }
+    });
+}
+
+waitForInputField().then(inputField => {
+    // const queryParams = new URLSearchParams(window.location.search);
+    // const referralCode = queryParams.get("rsCode");
+    // console.log(inputField)
+    // inputField.value = referralCode
+    console.log(inputField)
+})
+</script>
