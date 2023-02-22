@@ -1,20 +1,22 @@
 <!--
     This will listen to an email param and place its findings into the email field on the registration page.
 -->
+<link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/saasquatch/image/upload/v1657818643/squatch-assets/SaaSquatchLogo.png">
+
+
 <script>
 function waitForInputField() {
     return new Promise(function (resolve, reject) {
         waitForElementToDisplay(200);
         function waitForElementToDisplay(time) {
-            const query1 = 
+            const email = 
             { 
                  if_statement: document.querySelector('sqm-portal-registration-form')?.shadowRoot.querySelector('sl-form')?.querySelector('sl-input'),
                 do_this: (document.querySelector('sqm-portal-registration-form')?.shadowRoot.querySelector('sl-form')?.querySelector('sl-input'))
-
             }
-console.log("here. ", query1.if_statement)
-            if (query1.if_statement) {
-               resolve(query1.do_this)
+console.log("here. ", email.if_statement)
+            if (email.if_statement) {
+               resolve(email.do_this)
             }
             else {
                 setTimeout(function () {
@@ -27,8 +29,7 @@ console.log("here. ", query1.if_statement)
 
 waitForInputField().then(inputField => {
     const queryParams = new URLSearchParams(window.location.search);
-    const referralCode = queryParams.get("rsCode");
-    console.log(inputField)
-    inputField.value = referralCode
+    const email = queryParams.get("email");
+    inputField.value = email;
 })
 </script>
