@@ -9,15 +9,16 @@
         return new Promise(function (resolve, reject) {
             waitForElementToDisplay(200);
             function waitForElementToDisplay(time) {
-                const firstName = 
+                const query = 
                 { 
-                     if_statement: document.querySelector('sqm-portal-registration-form')?.querySelector('sqm-name-fields')?.querySelector('div')?.querySelector('sl-input'),
-                    do_this: document.querySelector('sqm-portal-registration-form')?.querySelector('sqm-name-fields')?.querySelector('div')?.querySelector('sl-input')
+                    company: document.querySelector('sqm-input-field')?.querySelector('div')?.querySelector('sl-input')
     
                 }
 
-                if (firstName.if_statement) {
-                    resolve(firstName.do_this)
+                console.log(query.company)
+
+                if (query.company) {
+                    resolve(query.company)
                 }
                 else {
                     setTimeout(function () {
@@ -30,8 +31,8 @@
     
     waitForInputField().then(inputField => {
         const queryParams = new URLSearchParams(window.location.search);
-        const firstName = queryParams.get("firstName");
-        console.log(inputField)
-        inputField.value = firstName
+        const company = queryParams.get("company");
+        
+        inputField.value = company
     })
     </script>
