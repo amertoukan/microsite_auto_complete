@@ -1,3 +1,6 @@
+<link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/saasquatch/image/upload/v1657818643/squatch-assets/SaaSquatchLogo.png">
+
+
 <!--
     This will listen to an email param and place its findings into the email field on the registration page.
 -->
@@ -6,15 +9,21 @@
         return new Promise(function (resolve, reject) {
             waitForElementToDisplay(200);
             function waitForElementToDisplay(time) {
-                const query1 = 
+                const firstName = 
                 { 
-                     if_statement: document.querySelector('sqm-portal-registration-form')?.shadowRoot.querySelector('sl-form')?.querySelector('sl-input'),
+                     if_statement: document.querySelector('sqm-portal-registration-form')?.querySelector('sqm-name-fields')?.querySelector('div')?.querySelector('sl-input'),
                     do_this: (document.querySelector('sqm-portal-registration-form')?.shadowRoot.querySelector('sl-form')?.querySelector('sl-input'))
     
                 }
-    console.log("here. ", query1.if_statement)
-                if (query1.if_statement) {
-                   resolve(query1.do_this)
+                const query2 = 
+                {
+                    
+                }
+    console.log("here. ", firstName.if_statement)
+                if (firstName.if_statement) {
+                //    resolve(firstName.do_this)
+                console.log('true')
+                firstName.if_statement.value="hello"
                 }
                 else {
                     setTimeout(function () {
@@ -27,8 +36,8 @@
     
     waitForInputField().then(inputField => {
         const queryParams = new URLSearchParams(window.location.search);
-        const referralCode = queryParams.get("rsCode");
+        const firstName = queryParams.get("firstName");
         console.log(inputField)
-        inputField.value = referralCode
+        inputField.value = firstName
     })
     </script>
