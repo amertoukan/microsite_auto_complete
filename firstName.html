@@ -12,18 +12,12 @@
                 const firstName = 
                 { 
                      if_statement: document.querySelector('sqm-portal-registration-form')?.querySelector('sqm-name-fields')?.querySelector('div')?.querySelector('sl-input'),
-                    do_this: (document.querySelector('sqm-portal-registration-form')?.shadowRoot.querySelector('sl-form')?.querySelector('sl-input'))
+                    do_this: document.querySelector('sqm-portal-registration-form')?.querySelector('sqm-name-fields')?.querySelector('div')?.querySelector('sl-input')
     
                 }
-                const query2 = 
-                {
-                    
-                }
-    console.log("here. ", firstName.if_statement)
+
                 if (firstName.if_statement) {
-                //    resolve(firstName.do_this)
-                console.log('true')
-                firstName.if_statement.value="hello"
+                    resolve(firstName.do_this)
                 }
                 else {
                     setTimeout(function () {
