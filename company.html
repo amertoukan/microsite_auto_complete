@@ -1,0 +1,39 @@
+<link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/saasquatch/image/upload/v1657818643/squatch-assets/SaaSquatchLogo.png">
+
+
+<!--
+    This will listen to a company param and place its findings into the email field on the registration page.
+    If you are looking to push custom fields, please refer to this document.
+-->
+<script>
+    function waitForInputField() {
+        return new Promise(function (resolve, reject) {
+            waitForElementToDisplay(200);
+            function waitForElementToDisplay(time) {
+                const query = 
+                { 
+                    company: document.querySelector('sqm-input-field')?.querySelector('div')?.querySelector('sl-input')
+    
+                }
+
+                console.log(query.company)
+
+                if (query.company) {
+                    resolve(query.company)
+                }
+                else {
+                    setTimeout(function () {
+                        waitForElementToDisplay(time);
+                    }, time);
+                }
+            }
+        });
+    }
+    
+    waitForInputField().then(inputField => {
+        const queryParams = new URLSearchParams(window.location.search);
+        const company = queryParams.get("company");
+        
+        inputField.value = company
+    })
+    </script>

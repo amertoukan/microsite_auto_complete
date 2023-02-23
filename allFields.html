@@ -1,0 +1,53 @@
+<!--
+    This script populates all fields (First, Last, Email, Company)
+-->
+
+<script>
+    function waitForInputField() {
+        return new Promise(function (resolve, reject) {
+            waitForElementToDisplay(200);
+            function waitForElementToDisplay(time) {
+                const query = 
+                { 
+                    first: document.querySelector('sqm-portal-registration-form')?.querySelector('sqm-name-fields')?.querySelector('div')?.querySelectorAll('sl-input')[0],
+                    last: document.querySelector('sqm-portal-registration-form')?.querySelector('sqm-name-fields')?.querySelector('div')?.querySelectorAll('sl-input')[1],
+                    email: document.querySelector('sqm-portal-registration-form')?.shadowRoot.querySelector('sl-form')?.querySelector('sl-input'),
+                    company: document.querySelector('sqm-input-field')?.querySelector('div')?.querySelector('sl-input')
+                }
+
+
+                if (query.first) {
+                    resolve({
+                            first: query.first, 
+                            last: query.last,
+                            email: query.email,
+                            company: query.company
+                        })
+                }
+                else {
+                    setTimeout(function () {
+                        waitForElementToDisplay(time);
+                    }, time);
+                }
+            }
+        });
+    }
+    
+    waitForInputField().then(inputField => {
+        const queryParams = new URLSearchParams(window.location.search);
+        const lastName = queryParams.get("lastName");
+        const firstName = queryParams.get('firstName');
+        const email = queryParams.get('email');
+        const company = queryParams.get('company')
+
+        const firstNameField = inputField.first
+        const lastNameField = inputField.last
+        const emailField = inputField.email
+        const companyField = inputField.company
+
+        firstNameField.value = firstName
+        lastNameField.value = lastName
+        emailField.value = email 
+        companyField.value = company
+    })
+    </script>

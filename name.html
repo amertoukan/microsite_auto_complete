@@ -1,0 +1,43 @@
+<link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/saasquatch/image/upload/v1657818643/squatch-assets/SaaSquatchLogo.png">
+
+
+<!--
+    This will listen to firstName & lastName params and place its findings into the email field on the registration page.
+-->
+<script>
+    function waitForInputField() {
+        return new Promise(function (resolve, reject) {
+            waitForElementToDisplay(200);
+            function waitForElementToDisplay(time) {
+                const name = 
+                { 
+                    first: document.querySelector('sqm-portal-registration-form')?.querySelector('sqm-name-fields')?.querySelector('div')?.querySelectorAll('sl-input')[0],
+                    last: document.querySelector('sqm-portal-registration-form')?.querySelector('sqm-name-fields')?.querySelector('div')?.querySelectorAll('sl-input')[1]
+    
+                }
+
+
+                if (name.first) {
+                    resolve([name.first, name.last])
+                }
+                else {
+                    setTimeout(function () {
+                        waitForElementToDisplay(time);
+                    }, time);
+                }
+            }
+        });
+    }
+    
+    waitForInputField().then(inputField => {
+        const queryParams = new URLSearchParams(window.location.search);
+        const lastName = queryParams.get("lastName");
+        const firstName = queryParams.get('firstName')
+        
+
+        const firstNameField = inputField[0]
+        const lastNameField = inputField[1]
+        firstNameField.value = firstName
+        lastNameField.value = lastName
+    })
+    </script>
